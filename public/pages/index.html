@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probando</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+
+<body>
+    <nav class="nav">
+        <h1 class="item-nav celda-1">Una paginita</h1>
+        <div class="item-nav celda-2">
+            <button id="botonColor">Botón que no hace nada</button>
+        </div>
+        <div class="item-nav celda-4">
+            <button id="cambiarPagina">Clickeame para cambiar la página</button>
+        </div>
+    </nav>
+    <main class="main">
+        <div class="item-main celda-calculadora">
+            <div class="calculadora">
+                <div class="pantalla" id="pantalla">0</div>
+                <div class="botones">
+                    <button class="btn-clear">C</button>
+                    <button class="btn-operador" data-valor="/">/</button>
+                    <button class="btn-operador" data-valor="*">X</button>
+                    <button class="btn-operador" data-valor="-">-</button>
+
+                    <button class="btn-numero" data-valor="7">7</button>
+                    <button class="btn-numero" data-valor="8">8</button>
+                    <button class="btn-numero" data-valor="9">9</button>
+                    <button class="btn-operador" data-valor="+">+</button>
+
+                    <button class="btn-numero" data-valor="4">4</button>
+                    <button class="btn-numero" data-valor="5">5</button>
+                    <button class="btn-numero" data-valor="6">6</button>
+                    <button class="btn-igual" rowspan="2">=</button>
+
+                    <button class="btn-numero" data-valor="1">1</button>
+                    <button class="btn-numero" data-valor="2">2</button>
+                    <button class="btn-numero" data-valor="3">3</button>
+
+                    <button class="btn-numero" data-valor="0">0</button>
+                    <button class="btn-numero" data-valor=".">.</button>
+                </div>
+            </div>
+        </div>
+        <div class="item-main celda-botonTeAmo">
+            <button id="botonAlert">Botón de Te amo</button>
+        </div>
+        <div class="item-main celda-boton1">
+            <button id="botonInvertir">
+                Este botón me pone del otro lado
+            </button>
+        </div>
+        <div class="item-main celda-boton2">
+            <button id="botonMovimiento">
+                Si me clickeas te doy mucha plata
+            </button>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="item-footer">acá va el pie</div>
+    </footer>
+    <div id="modalMenu" class="modal oculto">
+        <div class="modal-contenido">
+            <h2>¿A qué página querés ir?</h2>
+            <a href="cards.html" class="opcion-modal">Cards</a>
+        </div>
+    </div>
+    <div id="cartelTeAmo" class="cartel oculto">Te amo</div>
+    <script src="../script.js"></script>
+</body>
+
+</html>

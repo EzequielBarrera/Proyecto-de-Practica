@@ -1,0 +1,310 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px;
+    background-color: #deb887;
+}
+
+button:hover {
+    background-color: #a87128;
+    padding: 10px;
+}
+
+/* ANIMACIONES */
+
+
+@keyframes cartelTeAmo {
+    0% {
+        left: -100%;
+    }
+
+    30% {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    70% {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+
+/* IDs */
+#botonMovimiento {
+    position: relative;
+    transition: top 0.2s ease, left 0.2s ease;
+}
+
+/* NAV */
+
+.nav {
+    background-color: bisque;
+    gap: 150px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr 1fr;
+    grid-template-areas:
+        "celda1 celda2 celda3 a celda4";
+}
+
+.item-nav {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid;
+    border-radius: 5px;
+    border-color: grey;
+    padding: 10px;
+}
+
+.divCont {
+    display: grid;
+    grid-template-columns: minmax(250px, 1fr);
+    grid-template-areas:
+        "div-izq . div-der";
+    padding: 10px;
+    align-items: center;
+}
+
+.div-der button:hover {
+    background-color: #a87128;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+/* FOOTER */
+
+.footer {
+    /* anclar abajo de la página */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: bisque;
+    gap: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-footer {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* MAIN */
+
+.main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(3, 150px);
+    grid-template-areas:
+        "celda-calculadora celda-botonTeAmo"
+        "celda-calculadora celda-boton1"
+        "celda-calculadora celda-boton2";
+    height: 100vh;
+    gap: 10px;
+    padding: 20px;
+}
+
+.main.invertido {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(3, 150px);
+    grid-template-areas:
+        "celda-botonTeAmo celda-calculadora"
+        "celda-boton1 celda-calculadora"
+        "celda-boton2 celda-calculadora";
+    height: 100vh;
+    gap: 10px;
+    padding: 20px;
+}
+
+.item-main {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: solid;
+    border-radius: 5px;
+    border-color: grey;
+    padding: 10px;
+}
+
+/* GRID */
+
+.celda-calculadora {
+    grid-area: celda-calculadora;
+}
+
+.celda-botonTeAmo {
+    grid-area: celda-botonTeAmo;
+}
+
+.celda-boton1 {
+    grid-area: celda-boton1;
+}
+
+.celda-boton2 {
+    grid-area: celda-boton2;
+}
+
+.celda-1 {
+    grid-area: celda1;
+}
+
+.celda-2 {
+    grid-area: celda2;
+}
+
+.celda-3 {
+    grid-area: celda3;
+}
+
+.celda-4 {
+    grid-area: celda4;
+}
+
+.a {
+    grid-area: a;
+}
+
+.div-izq {
+    grid-area: div-izq;
+}
+
+.div-der {
+    grid-area: div-der;
+}
+
+/* MODAL PARA LAS PÁGINAS */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-contenido {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 250px;
+}
+
+.opcion-modal {
+    text-decoration: none;
+    color: black;
+    background-color: #deb887;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.opcion-modal:hover {
+    background-color: #a87128;
+}
+
+.oculto {
+    display: none;
+}
+
+/* CALCULADORA */
+
+.calculadora {
+    width: 280px;
+    margin: 0 auto;
+    background-color: grey;
+    padding: 20px;
+}
+
+.pantalla {
+    background-color: #222;
+    color: white;
+    font-size: 2rem;
+    text-align: right;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    min-height: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.botones {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.botones button {
+    padding: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* CARTEL TE AMO */
+
+.cartel {
+    position: fixed;
+    top: 40%;
+    background-color: #ff69b4;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    z-index: 999;
+}
+
+.animando {
+    display: block;
+    animation: cartelTeAmo 3s ease forwards;
+}
+
+/* PÁGINA CARDS */
+/* PÁGINA CARDS */
+/* PÁGINA CARDS */
+
+.main-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 30px;
+}
+
+.card {
+    border: solid;
+    border-color: grey;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: white;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
