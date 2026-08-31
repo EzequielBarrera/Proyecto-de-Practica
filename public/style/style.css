@@ -13,7 +13,6 @@ button {
 
 button:hover {
     background-color: #a87128;
-    padding: 10px;
 }
 
 /* ANIMACIONES */
@@ -79,7 +78,6 @@ button:hover {
 
 .div-der button:hover {
     background-color: #a87128;
-    padding: 5px;
     display: flex;
     align-items: center;
 }
@@ -303,6 +301,14 @@ button:hover {
     border-radius: 5px;
     padding: 20px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card-botones {
+    display: flex;
+    gap: 8px;
 }
 
 .card h3 {

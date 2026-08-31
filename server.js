@@ -43,3 +43,13 @@ app.get('/api/frases-random', (req, res) => {
     const frases = leerFrases()
     res.json({ frases })
 })
+
+app.delete('/api/frases-random/:indice', (req, res) => {
+    const frases = leerFrases()
+    const indice = parseInt(req.params.indice)
+
+    frases.splice(indice, 1)
+    guardarFrases(frases)
+
+    res.json({ mensaje: 'Frase eliminada', frases })
+})

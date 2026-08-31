@@ -107,6 +107,16 @@ if (contenedorBotones) {
     })
 }
 
+// Título de Cards dinámico
+
+function renombrarTitulos() {
+    const todasLasCards = document.querySelectorAll('.card')
+    todasLasCards.forEach((card, index) => {
+        const titulo = card.querySelector('h3')
+        titulo.textContent = `Título ${index + 1}`
+    })
+}
+
 // Agregar más cards en cards.html
 
 let botonAgregarCard = document.getElementById("botonAgregarCard")
@@ -166,6 +176,7 @@ if (botonAgregarCard) {
                 const nuevaCard = document.createElement('div')
                 nuevaCard.classList.add('card')
                 nuevaCard.classList.add('card-generada')
+                nuevaCard.dataset.indiceFrase = indiceAleatorio
 
                 const titulo = document.createElement('h3')
                 titulo.textContent = `Título ${contadorCards}`
@@ -173,10 +184,52 @@ if (botonAgregarCard) {
                 const parrafo = document.createElement('p')
                 parrafo.textContent = fraseElegida
 
+                const botonEliminarCard = document.createElement('button')
+                botonEliminarCard.textContent = 'Eliminar esta card'
+
+                botonEliminarCard.addEventListener('click', () => {
+                    nuevaCard.remove()
+                    renombrarTitulos()
+                    contadorCards--
+                    const cardsRestantes = document.querySelectorAll('.card-generada')
+                    if (cardsRestantes.length === 0) {
+                        celdaEliminarCards.classList.add('oculto')
+                    }
+                })
+
+                const botonEliminarFrase = document.createElement('button')
+                botonEliminarFrase.textContent = 'Eliminar esta frase'
+
+                botonEliminarFrase.addEventListener('click', () => {
+                    const indice = nuevaCard.dataset.indiceFrase
+
+                    fetch(`/api/frases-random/${indice}`, {
+                        method: 'DELETE'
+                    })
+                        .then(respuesta => respuesta.json)
+                        .then(() => {
+                            nuevaCard.remove()
+                            renombrarTitulos()
+                            contadorCards--
+                            const cardsRestantes = document.querySelectorAll('.card-generada')
+                            if (cardsRestantes.length === 0) {
+                                celdaEliminarCards.classList.add('oculto')
+                            }
+                        })
+                })
+
+                const contenedorBotones = document.createElement('div')
+                contenedorBotones.classList.add('card-botones')
+
+                contenedorBotones.appendChild(botonEliminarCard)
+                contenedorBotones.appendChild(botonEliminarFrase)
+
                 nuevaCard.appendChild(titulo)
                 nuevaCard.appendChild(parrafo)
+                nuevaCard.appendChild(contenedorBotones)
 
                 contenedorCards.appendChild(nuevaCard)
+                renombrarTitulos()
             })
         if (botonEliminarCards) {
             botonEliminarCards.addEventListener('click', () => {
