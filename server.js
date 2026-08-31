@@ -1,3 +1,4 @@
+const { error } = require('console')
 const express = require('express')
 const app = express()
 const PUERTO = 3000
@@ -32,8 +33,13 @@ function guardarFrases(frases) {
 // })
 
 app.post('/api/frases-random', (req, res) => {
-    const frases = leerFrases()
     const nuevaFrase = req.body.frase
+
+    if (!nuevaFrase || nuevaFrase.trim() === '') {
+        return res.status(400).json({ error: 'La frase no puede estar vacía' })
+    }
+
+    const frases = leerFrases()
     frases.push(nuevaFrase)
     guardarFrases(frases)
     res.json({ mensaje: 'Frase agregada', frases })

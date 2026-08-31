@@ -256,10 +256,18 @@ if (botonGuardarFrase) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ frase: inputFrase.value })
         })
-            .then(respuesta => respuesta.json())
+            .then(respuesta => {
+                if (!respuesta.ok) {
+                    throw new Error('No se pudo guardar la frase')
+                }
+                return respuesta.json()
+            })
             .then(datos => {
                 console.log(datos)
                 inputFrase.value = ''
+            })
+            .catch(error => {
+                alert(error.message)
             })
     })
 }
