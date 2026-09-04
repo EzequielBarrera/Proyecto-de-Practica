@@ -164,9 +164,13 @@ let contadorCards = 6
 
 if (botonAgregarCard) {
     botonAgregarCard.addEventListener('click', () => {
+        const cargando = document.getElementById('cargando')
+        cargando.classList.remove('oculto')
+
         fetch('/api/frases-random')
             .then(respuesta => respuesta.json())
             .then(datos => {
+                cargando.classList.add('oculto')
                 contadorCards++
                 celdaEliminarCards.classList.remove('oculto')
 
@@ -231,6 +235,10 @@ if (botonAgregarCard) {
                 contenedorCards.appendChild(nuevaCard)
                 renombrarTitulos()
             })
+            .catch(error => {
+                cargando.classList.add('oculto')
+                alert('No se pudo cargar la frase')
+            })
         if (botonEliminarCards) {
             botonEliminarCards.addEventListener('click', () => {
                 const cardsGeneradas = document.querySelectorAll('.card-generada')
@@ -269,5 +277,15 @@ if (botonGuardarFrase) {
             .catch(error => {
                 alert(error.message)
             })
+    })
+}
+
+// BOTÓN MODO OSCURO
+
+let botonModoOscuro = document.getElementById("botonModoOscuro")
+
+if (botonModoOscuro) {
+    botonModoOscuro.addEventListener('click', () => {
+        document.body.classList.toggle('oscuro')
     })
 }
