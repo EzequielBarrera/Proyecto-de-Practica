@@ -125,42 +125,6 @@ let celdaEliminarCards = document.querySelector('.celda-3')
 let contenedorCards = document.querySelector(".main-cards")
 let contadorCards = 6
 
-// if (botonAgregarCard) {
-//     botonAgregarCard.addEventListener('click', () => {
-//         contadorCards++
-//         celdaEliminarCards.classList.remove('oculto')
-
-//         // 1. Crear el div contenedor de la card
-//         const nuevaCard = document.createElement('div')
-//         nuevaCard.classList.add('card')
-//         nuevaCard.classList.add('card-generada')
-
-//         // 2. Crear el título
-//         const titulo = document.createElement('h3')
-//         titulo.textContent = `Título ${contadorCards}`
-
-//         // 3. Crear el párrafo
-//         const parrafo = document.createElement('p')
-//         parrafo.textContent = 'Carta generada artificialmente'
-
-//         // 4. Meter el título y el párrafo adentro de la card.
-//         nuevaCard.appendChild(titulo)
-//         nuevaCard.appendChild(parrafo)
-
-//         // 5. Meter la card completa adentro del contenedor
-//         contenedorCards.appendChild(nuevaCard)
-//     })
-//     if (botonEliminarCards) {
-//         botonEliminarCards.addEventListener('click', () => {
-//             const cardsGeneradas = document.querySelectorAll('.card-generada')
-//             cardsGeneradas.forEach((card) => {
-//                 card.remove()
-//             })
-//             celdaEliminarCards.classList.add('oculto')
-//             contadorCards = 6
-//         })
-//     }
-// }
 
 if (botonAgregarCard) {
     botonAgregarCard.addEventListener('click', () => {
@@ -210,15 +174,28 @@ if (botonAgregarCard) {
                     fetch(`/api/frases-random/${indice}`, {
                         method: 'DELETE'
                     })
-                        .then(respuesta => respuesta.json)
+                        .then(respuesta => {
+                            if (!respuesta.ok) {
+                                throw new Error('No se pudo eliminar la frase')
+                            }
+
+                            return respuesta.json()
+                        })
                         .then(() => {
                             nuevaCard.remove()
                             renombrarTitulos()
+
                             contadorCards--
+
                             const cardsRestantes = document.querySelectorAll('.card-generada')
+
                             if (cardsRestantes.length === 0) {
                                 celdaEliminarCards.classList.add('oculto')
                             }
+                        })
+                        .catch(error => {
+                            console.error('Error al eliminar la frase:', error)
+                            alert(error.message)
                         })
                 })
 

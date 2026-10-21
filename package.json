@@ -1,13 +1,18 @@
 {
-  "name": "proyecto-express",
+  "name": "proyecto-de-practica",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Proyecto de práctica de desarrollo web con JavaScript, Express y manipulación del DOM.",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "javascript",
+    "express",
+    "desarrollo-web",
+    "practica"
+  ],
+  "author": "Ezequiel Barrera",
   "license": "ISC",
   "dependencies": {
     "express": "^5.2.1"
