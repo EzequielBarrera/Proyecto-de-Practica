@@ -22,15 +22,6 @@ function guardarFrases(frases) {
 
 // RUTAS
 
-// app.post('/api/frases-random', (req, res) => {
-//     const nuevaFrase = req.body.frase
-//     frases.push(nuevaFrase)
-//     res.json({ mensaje: 'Frase agregada', frases })
-// })
-
-// app.get('/api/frases-random', (req, res) => {
-//     res.json({ frases })
-// })
 
 app.post('/api/frases-random', (req, res) => {
     const nuevaFrase = req.body.frase
@@ -52,10 +43,19 @@ app.get('/api/frases-random', (req, res) => {
 
 app.delete('/api/frases-random/:indice', (req, res) => {
     const frases = leerFrases()
-    const indice = parseInt(req.params.indice)
+    const indice = Number(req.params.indice)
+
+    if (!Number.isInteger(indice) || indice < 0 || indice >= frases.length) {
+        return res.status(400).json({
+            error: 'El índice de la frase no es válido'
+        })
+    }
 
     frases.splice(indice, 1)
     guardarFrases(frases)
 
-    res.json({ mensaje: 'Frase eliminada', frases })
+    res.json({
+        mensaje: 'Frase eliminada',
+        frases
+    })
 })
